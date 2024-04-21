@@ -2,36 +2,308 @@ Notes on subjective behavior:
 
 
 
-**Subjective**
+**Subjective:**
 
-* "The patient reports experiencing headaches."
+* The patient reports experiencing pain in their arm.
+
+**Subjective:**
+
+The patient reports experiencing pain in their arm.
 
 **S (Subjective):**
 
-The patient presents with a subjective complaint of headache.
+- The patient reports experiencing a sharp, stabbing pain.
+- The patient rates the pain intensity as 8 out of 10 on a numerical rating scale.
+- The patient states that the pain is interfering with their ability to engage in daily activities, including cooking and cleaning.
+- The patient expresses feelings of frustration and concern regarding the perceived lack of improvement in their condition.
+
+**Subjective:**
+
+The patient reports experiencing arm pain.
+
+**Subjective:**
+
+The patient reports experiencing pain or discomfort in their arm. The pain or discomfort is located in (specific location), and the patient describes it as (specific description). The patient states that the pain or discomfort has been present for (specific duration).
+
+**S (Subjective):**
+
+* Patient expresses satisfaction with the progress they have made.
+* Patient feels positive about their condition and is hopeful for continued improvement.
+* Patient acknowledges challenges encountered but remains motivated to overcome them.
+* Patient reports feeling supported and encouraged by the healthcare team.
+* Patient provides feedback on the effectiveness of interventions and suggests areas for improvement.
+
+**S (Subjective):** The patient describes feeling excellent.
+
+**Subjective:**
+
+The patient reports feeling subjectively great.
+
+**Subjective:**
+
+The patient reports feeling subjectively well. They have no complaints or concerns.
+
+**Subjective:**
+
+"The patient reports feeling well overall."
+
+**S (Subjective):**
+
+The patient reports experiencing pain or discomfort in their hands.
+
+**S (Subjective):** The patient reports experiencing pain in their hands.
+
+**Subjective:**
+
+The patient describes experiencing pain in their hands.
+
+**Subjective:**
+- Patient describes subjective pain experience as "hurting."
+
+**S (Subjective):** The patient reports experiencing pain in their hands.
+
+**Subjective:**
+
+- The patient reports experiencing pain in their hands.
+
+**S (Subjective):**
+
+The patient reports experiencing pain in their hands.
+
+**Subjective:**
+
+Patient reports experiencing hand pain.
+
+**Subjective**
+
+The patient reports pain in their hands.
+
+**Subjective (S):** The patient reports experiencing pain in their hands.
+
+**Subjective:**
+
+The patient reports subjective complaints of pain or discomfort in their hands.
+
+**Subjective:**
+
+The patient reports experiencing pain in their hands.
+
+**Subjective:**
+
+The patient subjectively reports experiencing pain, describing it as "hurting."
+
+**Subjective:**
+
+The patient describes their symptoms as hand pain.
+
+**Subjective:**
+
+The patient describes experiencing pain or discomfort in their hands.
+
+**Subjective:**
+
+The patient reports experiencing pain in their hands.
+
+**Subjective:**
+
+The patient reports experiencing pain in their hands. No further information is provided regarding the nature, location, or severity of the pain.
 
 Notes on objective behavior:
 
 
 
-**Objective**
+**Objective:**
 
-**Forearm Flexors**
-
-* 1 game played
-* Game duration: Not specified
-* Difficulty level: Increased to 2, then decreased to 0
-
-**Bicep Builder**
-
-* No objective data available in the provided log
+* **Games Played:** 9
+* **Time Played:** Not specified in the provided log
+* **Difficulty Level:** 0 for all games
 
 **Objective:**
 
-* Player won one round of Forearm Flexors.
-* Forearm Flexors was played at difficulty level 2.
-* Time used for Forearm Flexors: Not specified in the provided log.
-* Forearm Flexors difficulty level was decreased to 0 four times.
+* Patient participated in 8 virtual gardening games (Forearm Flexors).
+* Total play time was 0 minutes.
+* Game difficulty level was decreased to 0 for all sessions.
+
+**Objective**
+
+- **Games played:** 10
+- **Time used:** 0 minutes
+- **Level played:** 0
+
+**Objective**
+
+* **Number of Games Completed:** The client completed 10 games during the session.
+* **Time Played:** The client spent a total of 10 minutes playing the Forearm Flexors game.
+* **Difficulty Level:** The client played all 10 games at difficulty level 0.
+
+**Objective:**
+
+- 10 games of Forearm Flexors were played.
+- The total time spent playing Forearm Flexors was 10 minutes, as each game lasts 1 minute.
+- The game was played at difficulty level 0 for all 10 games.
+
+**Objective:**
+
+The patient completed ten Forearm Flexors games. The difficulty level remained at 0 throughout the session. Time remaining at the end of each game was 0 seconds, indicating that the patient completed each game in its entirety.
+
+**Objective:**
+
+* **Number of Games Played:** Not mentioned in the given information.
+* **Total Time Played:** Not mentioned in the given information.
+* **Game Level Played:** Difficulty level of Forearm Flexors was consistently decreased to 0 throughout the session, indicating that the game was played at the easiest difficulty level.
+
+**Objective:**
+
+The client played a total of 10 rounds of the Forearm Flexors game. Each round ended when the time limit of 0 seconds was reached. The difficulty level was decreased to 0 for all 10 rounds.
+
+### Objective
+
+The patient played 10 rounds of Forearm Flexors. The difficulty level was decreased to 0 for each round. The patient won one round, which increased the difficulty level to 2.
+
+**Objective:**
+
+* 10 rounds of the Forearm Flexors game were played.
+* Total time played: 0 minutes (as noted in the game log, the time remaining was 0 for all 10 rounds).
+* Difficulty level: 0 for the first 10 rounds, then increased to 2 for the 11th and 12th rounds.
+
+**Objective:**
+
+The patient completed three sessions of the forearm flexors virtual game and nine sessions of the biceps brachii virtual game. The time remaining for each session was zero, indicating that the patient completed each game successfully. The difficulty level for the forearm flexors game was decreased to zero for all sessions, while the difficulty level for the biceps brachii game was increased to two for one session.
+
+**Objective:**
+
+The patient played a total of 15 rounds of Forearm Flexors. The difficulty level was decreased to 0 after each round, indicating that the patient was struggling to complete the game at the higher difficulty level. The patient won two rounds of Forearm Flexors, and the difficulty level was increased to 2 after each win. The time remaining for each round was not mentioned in the log.
+
+**Objective:**
+
+**Forearm Flexors:**
+* Number of games played: 1
+* Total time spent: 10 minutes
+* Difficulty level: Initially at 0, gradually increased to 2
+
+**Bicep Builder:**
+* No data provided in the given log
+
+**Objective**
+
+The patient completed 17 rounds of the Forearm Flexors game. The difficulty level was decreased to 0 for 13 rounds and increased to 2 for 2 rounds. The patient's time remaining for each round was not recorded in the log.
+
+**Objective:**
+
+* **Number of Games Played:** 16 games of Forearm Flexors VR were played.
+* **Total Time Spent Playing:** Not specified in the provided information.
+* **Difficulty Levels Played:** 0 to 2.
+
+**Additional Observations:**
+
+* The difficulty level was decreased to 0 multiple times throughout the session, indicating potential difficulty for the player.
+* The difficulty level was increased to 2 twice during the session, suggesting that the player may have been improving their performance.
+* Specific metrics such as number of plants pulled, distance from the global origin, size of grass, and time left passed for each plant (for Forearm Flexors VR) are not available in the provided log.
+* Data specific to Bicep Builder VR game gameplay is also not included in the provided log.
+
+**Objective**
+
+* **Number of games played:** 2 rounds
+* **Total time played:** Not provided in the log
+* **Game difficulty levels played:** 
+    * Forearm Flexors: 0, 2
+    * Bicep Builder: Not provided in the log
+
+**Objective:**
+
+* 20 games of Forearm Flexors were played.
+* Total time spent playing Forearm Flexors was 0 seconds.
+* The difficulty level of Forearm Flexors was decreased to 0 for all games.
+
+**Objective:**
+
+The user completed 10 games of Forearm Flexors and 2 games of Bicep Builder.
+
+**Forearm Flexors:**
+
+* Time played: 0 seconds for all 10 games
+* Difficulty level: 0 for all 10 games
+
+**Bicep Builder:**
+
+* Time played: Not mentioned in the provided data
+* Difficulty level: Not mentioned in the provided data
+
+**Objective:**
+
+* Number of Forearm Flexors games played: 20
+* Total time spent playing Forearm Flexors: Not specified
+* Difficulty levels played in Forearm Flexors: 0 and 2
+
+**Objective**
+
+The player played a total of 20 games of Forearm Flexors. The difficulty level of the game was decreased to 0 for all 20 games. The amount of time used for each game is not specified in the log.
+
+**Objective:**
+
+The player played a total of **23 games** of Forearm Flexors.
+
+The player played each game for **0 seconds**.
+
+The difficulty level of Forearm Flexors was decreased to **0** for all 23 games.
+
+**Objective**
+
+The client participated in two VR games: Forearm Flexors and Bicep Builder.
+
+**Forearm Flexors**
+
+* Total games played: 2
+* Total time played: 20 minutes
+* Difficulty level: 0-2
+
+**Bicep Builder**
+
+* Total games played: 1
+* Total time played: Not specified
+* Difficulty level: Not specified
+
+**Objective:**
+
+**Forearm Flexors:**
+
+* 27 games played
+* Total time spent: 0 minutes
+* Difficulty level: 0 throughout, except for one game played at difficulty level 2
+
+**Bicep Builder:**
+
+* No data available on number of games played or time spent
+* Difficulty level: No data available
+
+**Objective**
+
+The player completed 27 rounds of Forearm Flexors and was successful in each round. The difficulty level for Forearm Flexors was 0 for 96% of the rounds (26 out of 27). For the remaining 4% (1 out of 27) of the rounds, the difficulty level was 2.
+
+**Objective:**
+
+The patient played a total of 26 rounds of Forearm Flexors. The difficulty level was set to 0 for 25 of the 26 games played. One game was played at difficulty level 2. The patient won two rounds of Forearm Flexors. No data was recorded for Bicep Builder - VR Game for Biceps Brachii - rowing.
+
+**Objective:**
+
+The patient played 3 rounds of Forearm Flexors at difficulty level 0. 
+
+The remaining time for each round was 0. 
+
+The patient won 2 rounds of Forearm Flexors.
+
+**Objective:**
+
+**Forearm Flexors Game:**
+
+* Total number of games played: 29
+* Total time spent playing: 0 minutes
+* Difficulty levels played: 0, 1, 2
+* Player won at least 2 rounds.
+
+**Bicep Builder Game:**
+
+* No data available from the provided event log.
 
 Future Sessions:
 

@@ -10,7 +10,6 @@ from IPython.display import Markdown
 import google.generativeai as genai
 import textwrap
 
-from IPython.display import display
 from IPython.display import Markdown
 def to_markdown(text):
   text = text.replace('•', '  *')
@@ -394,7 +393,7 @@ async def generate_report(results: FinalResults):
 
 '''
 
-@placeholder.on_interval(5)
+@placeholder.on_interval(1)
 async def speak(ctx:Context):
     Purpose = """
     Let the user know how they are doing and respond to anything they've said. 
@@ -628,9 +627,6 @@ async def get_unity_data(ctx:Context):
         ctx.storage.set({"game_type": "Forearm Flexors"})
         ref.update({"game_type", "Forearm Flexors"})
    
-
-
-
 def setMuscles(ctx,highlighted_muscles):
     new_muscles = {}
     for muscle in list(ctx.storage.get(highlighted_muscles).keys()):
@@ -642,8 +638,6 @@ def setMuscles(ctx,highlighted_muscles):
 
 placeholder.include(protocol)
 game_master.include(game_protocol)
-
-from uagents.setup import fund_agent_if_low
  
 user = Agent(
     name="user",
@@ -664,12 +658,9 @@ game_query = PatientData(
 async def interval(ctx: Context):
          await ctx.send(placeholder.address, game_query)
  
- 
- 
 if __name__ == '__main__':
     bureau = Bureau()
     bureau.add(user)
     bureau.add(placeholder)
     bureau.add(game_master)
     bureau.run()
-   
