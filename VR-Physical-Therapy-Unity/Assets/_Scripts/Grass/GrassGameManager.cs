@@ -8,10 +8,12 @@ public class GrassGameManager : Singleton<GrassGameManager>
 {
     public GameObject grassPrefab;
     public Transform grassParent;
+    public int Score { get; private set; }
     private int numGrass = 3;  // hardcoded for 3 grass.
     private int grassRemaining;
     
     public static event Action OnRoundStart;
+    public static event Action OnGrassPlucked;
     
     private DatabaseManager databaseManager;
 
@@ -33,6 +35,14 @@ public class GrassGameManager : Singleton<GrassGameManager>
 
     public void StartNewRound()
     {
+        if (grassRemaining > 0)
+        {
+            // destroy all grass
+            foreach (Transform child in grassParent)
+            {
+                Destroy(child.gameObject);
+            }
+        }
         grassRemaining = numGrass;
         int difficulty = databaseManager.GameData.difficulty;
         print("DIFFICULT IS " + difficulty);
@@ -63,7 +73,9 @@ public class GrassGameManager : Singleton<GrassGameManager>
     
     public void GrassDestroyed()
     {
+        Score++;
         grassRemaining--;
+        OnGrassPlucked?.Invoke();
         if (grassRemaining == 0)
         {
             print("All grass destroyed");

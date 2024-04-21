@@ -11,7 +11,7 @@ public class TimerScript : MonoBehaviour
     
     public static event Action OnTimerEnd;
 
-    private int maximumTime = 40; // TODO : Get this from the database.
+    private int maximumTime = 30; // TODO : Get this from the database.
 
     private void OnEnable()
     {

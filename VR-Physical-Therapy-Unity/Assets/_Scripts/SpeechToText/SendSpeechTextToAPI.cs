@@ -9,6 +9,8 @@ public class SendSpeechTextToAPI : MonoBehaviour
 {
     private string databaseURL = "https://la-hacks-2024-e09c3-default-rtdb.firebaseio.com/";
     
+    public static event Action OnFinishedWritingToDatabase;
+    
     private void OnEnable()
     {
         WhisperVoice.OnEndRecording += WriteToDatabase;
@@ -42,5 +44,8 @@ public class SendSpeechTextToAPI : MonoBehaviour
                 Debug.Log("Write complete!");
             }
         }
+        
+        // Now we can read from the database
+        OnFinishedWritingToDatabase?.Invoke();
     }
 }

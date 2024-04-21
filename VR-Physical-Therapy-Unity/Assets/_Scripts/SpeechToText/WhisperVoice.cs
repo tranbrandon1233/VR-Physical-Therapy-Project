@@ -11,6 +11,8 @@ namespace OpenAI
         public static event Action OnStartRecording;
         public static event Action<String> OnEndRecording;
         
+        public GameObject recordText;
+        
         private readonly string fileName = "output.wav";
         private readonly int duration = 20;
 
@@ -59,6 +61,7 @@ namespace OpenAI
             {
                 if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch)) 
                 {
+                    recordText.SetActive(false);
                     EndRecording();
                 }
             }
@@ -66,6 +69,7 @@ namespace OpenAI
             {
                 if (OVRInput.GetDown(OVRInput.Button.One, OVRInput.Controller.RTouch)) 
                 {
+                    recordText.SetActive(true);
                     StartRecording();
                 }
             }

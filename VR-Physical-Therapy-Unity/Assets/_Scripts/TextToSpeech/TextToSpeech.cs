@@ -14,6 +14,7 @@ namespace AWS
         private TextToSpeechAWSManager _textToSpeechAwsManager;
         private AudioSource _audioSource;
         private VoiceId _voiceId = VoiceId.Stephen;
+        private string previousText = "";
         
         private void Awake()
         {
@@ -28,16 +29,22 @@ namespace AWS
 
         private void OnEnable()
         {
-            WhisperVoice.OnEndRecording += ConvertTextToSpeechAndPlayAudioAsync;
+            GetTextFromLLMAPI.OnReadFromLLM += ConvertTextToSpeechAndPlayAudioAsync;
         }
 
         private void OnDisable()
         {
-            WhisperVoice.OnEndRecording -= ConvertTextToSpeechAndPlayAudioAsync;
+            GetTextFromLLMAPI.OnReadFromLLM -= ConvertTextToSpeechAndPlayAudioAsync;
         }
         
         private async void ConvertTextToSpeechAndPlayAudioAsync(string text)
         {
+            if (text == previousText)
+            {
+                print("Text is the same as previous text. Not converting to speech.");
+                return;
+            }
+            previousText = text;
             _audioSource.Stop();
            
             print("Converting text to speech: " + text);

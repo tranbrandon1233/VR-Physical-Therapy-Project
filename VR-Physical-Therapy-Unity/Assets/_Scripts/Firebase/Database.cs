@@ -15,10 +15,15 @@ public class DatabaseManager : Singleton<DatabaseManager>
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(WriteToDatabase());
+        // StartCoroutine(WriteToDatabase());
         StartCoroutine(ReadFromDatabase());
     }
-    
+
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
+    }
+
     IEnumerator WriteToDatabase()
     {
         // Example data
@@ -42,22 +47,27 @@ public class DatabaseManager : Singleton<DatabaseManager>
     
     IEnumerator ReadFromDatabase()
     {
-        using (UnityWebRequest www = UnityWebRequest.Get(databaseURL + "api.json"))
+        while (true)
         {
-            yield return www.SendWebRequest();
+            using (UnityWebRequest www = UnityWebRequest.Get(databaseURL + "api.json"))
+            {
+                yield return www.SendWebRequest();
     
-            if (www.result != UnityWebRequest.Result.Success)
-            {
-                Debug.LogError(www.error);
+                if (www.result != UnityWebRequest.Result.Success)
+                {
+                    Debug.LogError(www.error);
+                }
+                else
+                {
+                    string jsonData = www.downloadHandler.text;
+                    Debug.Log("Received data: " + jsonData);
+                    // Process jsonData
+                    print("Reading data from Firebase"); 
+                    GameData = GameData.CreateFromJSON(jsonData);
+                }
             }
-            else
-            {
-                string jsonData = www.downloadHandler.text;
-                Debug.Log("Received data: " + jsonData);
-                // Process jsonData
-                print("Reading data from Firebase"); 
-                GameData = GameData.CreateFromJSON(jsonData);
-            }
+            // Wait 5 seconds before reading again
+            yield return new WaitForSeconds(3f);
         }
     }
 
