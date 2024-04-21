@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class DatabaseManager : MonoBehaviour
+public class DatabaseManager : Singleton<DatabaseManager>
 {
     public GameData GameData;
     private const string databaseURL = "https://la-hacks-2024-e09c3-default-rtdb.firebaseio.com/";
