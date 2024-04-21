@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Threading.Tasks;
 using Amazon.Polly;
+using OpenAI;
 using UnityEngine;
 
 namespace AWS
@@ -24,7 +25,16 @@ namespace AWS
             _textToSpeechAwsManager = TextToSpeechAWSManager.Instance;
             _voiceId = VoiceId.Stephen;
         }
-        
+
+        private void OnEnable()
+        {
+            WhisperVoice.OnEndRecording += ConvertTextToSpeechAndPlayAudioAsync;
+        }
+
+        private void OnDisable()
+        {
+            WhisperVoice.OnEndRecording -= ConvertTextToSpeechAndPlayAudioAsync;
+        }
         
         private async void ConvertTextToSpeechAndPlayAudioAsync(string text)
         {
