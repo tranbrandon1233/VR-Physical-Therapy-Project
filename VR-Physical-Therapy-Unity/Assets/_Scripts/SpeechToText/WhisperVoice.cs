@@ -11,11 +11,6 @@ namespace OpenAI
         public static event Action OnStartRecording;
         public static event Action<String> OnEndRecording;
         
-        // [SerializeField] private Button recordButton;
-        // [SerializeField] private Sprite micImage;
-        // [SerializeField] private Sprite stopRec;
-        // [SerializeField] private TMP_Dropdown dropdown;
-        
         private readonly string fileName = "output.wav";
         private readonly int duration = 20;
 

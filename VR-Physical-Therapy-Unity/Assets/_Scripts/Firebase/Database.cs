@@ -6,28 +6,24 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class Database : MonoBehaviour
+public class DatabaseManager : MonoBehaviour
 {
-    private string databaseURL = "https://la-hacks-2024-e09c3-default-rtdb.firebaseio.com/";
-    private string username = "tranbrandon1233";
-    private string email = "tranbrandon1233@gmail.com";
-    private string name = "LAHacksUser123";
-    private User user = new User();
+    public GameData GameData;
+    private const string databaseURL = "https://la-hacks-2024-e09c3-default-rtdb.firebaseio.com/";
     
     // Now I want to do this via a REST API natively and not use Proyecto26
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(WriteToDatabase());
+        StartCoroutine(ReadFromDatabase());
     }
     
     IEnumerator WriteToDatabase()
     {
         // Example data
-        // string jsonData = "{\"name\": \"Unity User\", \"score\": 10}";
-        user.UserName = username;
-        user.Email = email;
-        string jsonData = JsonUtility.ToJson(user);
+        string jsonData = "{\"name\": \"Unity User\", \"score\": 10}";
+        
         using (UnityWebRequest www = UnityWebRequest.Put(databaseURL + "users/user_id.json", jsonData))
         {
             www.SetRequestHeader("Content-Type", "application/json");
@@ -42,12 +38,11 @@ public class Database : MonoBehaviour
                 Debug.Log("Write complete!");
             }
         }
-        StartCoroutine(ReadFromDatabase());
     }
     
     IEnumerator ReadFromDatabase()
     {
-        using (UnityWebRequest www = UnityWebRequest.Get(databaseURL + "users/user_id.json"))
+        using (UnityWebRequest www = UnityWebRequest.Get(databaseURL + "api.json"))
         {
             yield return www.SendWebRequest();
     
@@ -61,9 +56,7 @@ public class Database : MonoBehaviour
                 Debug.Log("Received data: " + jsonData);
                 // Process jsonData
                 print("Reading data from Firebase"); 
-                var printedUser = JsonUtility.FromJson<User>(jsonData);
-                Debug.Log("User: " + printedUser.UserName + " " + printedUser.Email);
-                
+                GameData = GameData.CreateFromJSON(jsonData);
             }
         }
     }
