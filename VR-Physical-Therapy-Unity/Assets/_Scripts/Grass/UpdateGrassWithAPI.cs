@@ -31,10 +31,10 @@ public class UpdateGrassWithAPI : MonoBehaviour
                 transform.position = new Vector3(transform.position.x, transform.position.y, 0);
                 break;
             case 1:
-                transform.position = new Vector3(transform.position.x, transform.position.y, 1);
+                transform.position = new Vector3(transform.position.x, transform.position.y, .25f);
                 break;
             case 2:
-                transform.position = new Vector3(transform.position.x, transform.position.y, 2);
+                transform.position = new Vector3(transform.position.x, transform.position.y, 0.5f);
                 break;
             default:
                 transform.position = new Vector3(transform.position.x, transform.position.y, 0);
