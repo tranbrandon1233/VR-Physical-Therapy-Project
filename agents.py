@@ -114,18 +114,23 @@ async def get_score(ctx:Context):
         # Get a database reference to our posts
         # Read the data at the posts reference (this is a blocking operation)
         ref = db.reference('/score')
-        last_score = ref.get()["score"]
+        try:
+            last_score = ref.get()["score"]
+        except:
+            ref.update({"score":0})
+            last_score = 0
         if ctx.storage.get("event_log") is None:
             ctx.storage.set("event_log", "")
         if last_score > ctx.storage.get("last_score"):
             ctx.storage.set("secsSinceLastScore", 0)
+            ctx.storage.set("last_score", last_score)
             if last_score >= ctx.storage.get("winning_score"):
-               
                 ctx.storage.set("time_remaining",0)
+                
                 if ctx.storage.get("difficulty") < 2:
                     ctx.storage.set("difficulty", ctx.storage.get("difficulty") + 1)  
                     ctx.storage.set("event_log", ctx.storage.get("event_log") + "\n\nPlayer has won a round of " + str(ctx.storage.get("game_type")) + ". The difficulty level of "+str(ctx.storage.get("game_type"))+" has been increased to "+str(ctx.storage.get("difficulty"))+".")
-                    ctx.logger.info("\n\nPlayer has won a round of " + str(ctx.storage.get("game_type")) + ". The difficulty level of "+str(ctx.storage.get("game_type"))+" has been increased to "+str(ctx.storage.get("difficulty"))+".")
+                    #ctx.logger.info("\n\nPlayer has won a round of " + str(ctx.storage.get("game_type")) + ". The difficulty level of "+str(ctx.storage.get("game_type"))+" has been increased to "+str(ctx.storage.get("difficulty"))+".")
                     if ctx.storage.get("time_remaining") == 0:
                         ratio = 0
                     else:
@@ -139,8 +144,7 @@ async def get_score(ctx:Context):
                     else:
                         ratio = (ctx.storage.get("winning_score")-ctx.storage.get("last_score"))/ctx.storage.get("time_remaining")
                     #giveInstructions(ctx.storage.get("game_type"),"Win",ctx.storage.get("last_score"),ctx.storage.get("time_remaining"),ratio,ctx.storage.get("winning_score")-ctx.storage.get("last_score")) 
-            else:
-                ctx.storage.set("last_score", last_score)
+               
                 
         elif (ctx.storage.get("secsSinceLastScore") > 30 or ctx.storage.get("time_remaining") <= 0):
             
@@ -169,28 +173,26 @@ async def get_score(ctx:Context):
                 
 @placeholder.on_event("startup")
 async def start(ctx:Context):
-    ctx.logger.info("Hello, I will be your personal physical therapist today. Let's get started!")
+    instructions()
+    #ctx.logger.info("Hello, I will be your personal physical therapist today. Let's get started!")
     ctx.storage.set("event_log", "Beginning of the session.")
     ctx.storage.set("playedAlready",None)
     ctx.storage.set("highlighted_muscles", [])
     ctx.storage.set("game_type", "Forearm Flexors")
-    ctx.storage.set("secsSinceLastScore", 0)
     ctx.storage.set("last_score",0)
     ctx.storage.set("handedness","R")
-    ctx.storage.set("time_remaining", 0)
-    ctx.storage.set("winning_score", 0)
-    ctx.storage.set("num_plants", 0)
-    ctx.storage.set("distance", ([0,0],0,[0,0]))
-    ctx.storage.set("size", 0)
     ctx.storage.set("time", 30)
+    ctx.storage.set("winning_score", 10)
     ctx.storage.set("prev_text_output", "")
     ctx.storage.set("text_output", "")
+    ctx.storage.set("subjNotes","Notes on subjective behavior:\n\n")
+    ctx.storage.set("objNotes","Notes on objective behavior:\n\n")
     
     
 
 @game_master.on_message(model=SetParams,replies=GameRequest)
 async def generate_challenge(ctx:Context,data,msg:SetParams):
-    ctx.logger.info(f'Creating {msg.game_type} game with difficulty level {msg.difficulty}.')
+    #ctx.logger.info(f'Creating {msg.game_type} game with difficulty level {2-msg.difficulty}.')
     match msg.game_type:
         case "Forearm Flexors":
             ctx.storage.set("game_type","Forearm Flexors")
@@ -199,7 +201,7 @@ async def generate_challenge(ctx:Context,data,msg:SetParams):
                 ctx.storage.set("handedness","R")
             match msg.difficulty:
                 case 0:
-                    await ctx.send(game_master.address,GameRequest(type="FF",game=FFTask(difficulty=0,num_plants=10,distance=([1,3],1,[1,3]),size=7,handedness=ctx.storage.get("handedness"), time=10*6)))
+                    #await ctx.send(game_master.address,GameRequest(type="FF",game=FFTask(difficulty=0,num_plants=10,distance=([1,3],1,[1,3]),size=7,handedness=ctx.storage.get("handedness"), time=10*6)))
                     ctx.storage.set("winning_score", 10)
                     ctx.storage.set("difficulty", 2)
                     ctx.storage.set("num_plants", 10)
@@ -208,7 +210,7 @@ async def generate_challenge(ctx:Context,data,msg:SetParams):
                     ctx.storage.set("time", 30)
                     ctx.storage.set("difficulty", 0)
                 case 1:
-                    await ctx.send(game_master.address,GameRequest(type="FF",game=FFTask(difficulty=1,num_plants=15,distance=([2,4],1,[2,4]),size=5,handedness=ctx.storage.get("handedness"),time=15*4)))
+                    #await ctx.send(game_master.address,GameRequest(type="FF",game=FFTask(difficulty=1,num_plants=15,distance=([2,4],1,[2,4]),size=5,handedness=ctx.storage.get("handedness"),time=15*4)))
                     ctx.storage.set("winning_score", 15)
                     ctx.storage.set("num_plants", 15)
                     ctx.storage.set("difficulty", 1)
@@ -217,7 +219,7 @@ async def generate_challenge(ctx:Context,data,msg:SetParams):
                     ctx.storage.set("time", 30)
                     
                 case 2:
-                    await ctx.send(game_master.address,GameRequest(type="FF",game=FFTask(difficulty=2,num_plants=20,distance=([3,5],1,[3,5]),size=3,handedness=ctx.storage.get("handedness"),time=20*3)))
+                    #await ctx.send(game_master.address,GameRequest(type="FF",game=FFTask(difficulty=2,num_plants=20,distance=([3,5],1,[3,5]),size=3,handedness=ctx.storage.get("handedness"),time=20*3)))
                     ctx.storage.set("winning_score", 20)
                     ctx.storage.set("num_plants", 20)
                     ctx.storage.set("difficulty", 0)
@@ -228,7 +230,7 @@ async def generate_challenge(ctx:Context,data,msg:SetParams):
         case "Bicep Builder":
             match msg.difficulty:
                 case 0:
-                    await ctx.send(game_master.address,GameRequest(type="BB",game=BBTask(difficulty=0,timer_per_revolution=10,revs_remaining=3,time=20*3)))
+                    #await ctx.send(game_master.address,GameRequest(type="BB",game=BBTask(difficulty=0,timer_per_revolution=10,revs_remaining=3,time=20*3)))
                     ctx.storage.set("winning_score", 3)
                     ctx.storage.set("time_remaining", 30)
                     data_to_unity["winning_score"] = 3
@@ -236,14 +238,14 @@ async def generate_challenge(ctx:Context,data,msg:SetParams):
                     data_to_unity["Bicep Builder"] = {"timer_per_revolution":10,"revs_remaining":3,"time":20*3}
                     
                 case 1:
-                    await ctx.send(game_master.address,GameRequest(type="BB",game=BBTask(difficulty=1,timer_per_revolution=8,revs_remaining=6,time=50)))
+                    #await ctx.send(game_master.address,GameRequest(type="BB",game=BBTask(difficulty=1,timer_per_revolution=8,revs_remaining=6,time=50)))
                     ctx.storage.set("winning_score",6)
                     ctx.storage.set("time_remaining", 50)
                     data_to_unity["winning_score"] = 6
                     data_to_unity["difficulty"] = 1
                     data_to_unity["Bicep Builder"] = {"timer_per_revolution":8,"revs_remaining":6,"time":50}
                 case 2:
-                    await ctx.send(game_master.address,GameRequest(type="BB",game=BBTask(difficulty=2,timer_per_revolution=6,revs_remaining=9,time=45)))
+                    #await ctx.send(game_master.address,GameRequest(type="BB",game=BBTask(difficulty=2,timer_per_revolution=6,revs_remaining=9,time=45)))
                     ctx.storage.set("winning_score", 9)
                     ctx.storage.set("time_remaining", 45)
                     data_to_unity["winning_score"] = 9
@@ -257,7 +259,7 @@ async def generate_challenge(ctx:Context,data,msg:SetParams):
             match msg.difficulty:
                 case 0:
                     books = getBooks(3,4)
-                    await ctx.send(game_master.address,GameRequest(type="PP",game=PPTask(difficulty=0,arrangement=books,grid_size=3)))
+                    #await ctx.send(game_master.address,GameRequest(type="PP",game=PPTask(difficulty=0,arrangement=books,grid_size=3)))
                     ctx.storage.set("winning_score", 3)
                     ctx.storage.set("difficulty", 0)
                     data_to_unity["winning_score"] = 3
@@ -266,7 +268,7 @@ async def generate_challenge(ctx:Context,data,msg:SetParams):
                     
                 case 1:
                     books=getBooks(5,7)
-                    await ctx.send(game_master.address,GameRequest(type="PP",game=PPTask(difficulty=1,arrangement=books,grid_size=5)))
+                    #await ctx.send(game_master.address,GameRequest(type="PP",game=PPTask(difficulty=1,arrangement=books,grid_size=5)))
                     ctx.storage.set("winning_score", 5)
                     ctx.storage.set("difficulty", 1)
                     data_to_unity["winning_score"] = 5
@@ -274,17 +276,16 @@ async def generate_challenge(ctx:Context,data,msg:SetParams):
                     data_to_unity["Push and Place"] = {"arrangement":books,"grid_size":5}
                 case 2:
                     books=getBooks(7,10)
-                    await ctx.send(game_master.address,GameRequest(type="PP",game=PPTask(difficulty=2,arrangement=books,grid_size=7)))
+                    #await ctx.send(game_master.address,GameRequest(type="PP",game=PPTask(difficulty=2,arrangement=books,grid_size=7)))
                     ctx.storage.set("winning_score", 7)
                     ctx.storage.set("difficulty", 2)
                     data_to_unity["winning_score"] = 7
                     data_to_unity["difficulty"] = 2
                     data_to_unity["Push and Place"] = {"arrangement":books,"grid_size":7}
                     
-    ctx.logger.info(str(ctx.storage.get("game_type"))+" game started with difficulty level "+str(ctx.storage.get("difficulty"))+".")
+    #ctx.logger.info(str(ctx.storage.get("game_type"))+" game started with difficulty level "+str(ctx.storage.get("difficulty"))+".")
     if ctx.storage.get("event_log") is None:
         ctx.storage.set("event_log", "")
-    ctx.logger.info(str(ctx.storage.get("game_type"))+" game started with difficulty level "+str(ctx.storage.get("difficulty"))+".")
     ctx.storage.set("event_log", ctx.storage.get("event_log") + "\n\n"+str(ctx.storage.get("game_type"))+" game started with difficulty level "+str(ctx.storage.get("difficulty"))+".")
 def getBooks(n,total_count):
     books = [["N" for _ in range(n)] for _ in range(n)]
@@ -314,9 +315,6 @@ def getBooks(n,total_count):
 
 @protocol.on_query(model=PatientData,replies=SetParams)
 async def create_game(ctx: Context, data: PatientData,msg:PatientData):
-    ctx.logger.info(f'Creating game for {msg.name}')
-    ctx.storage.set("secsSinceLastScore", 0)
-    ctx.storage.set("last_score",0)
     ctx.storage.set("handedness","R")
     ctx.storage.set("difficulty", 2-msg.severity)
     if any(issue in msg.issues for issue in ["Flexor carpi radialis"," Flexor carpi ulnaris", "Flexor digitorum superficialis"]):
@@ -476,11 +474,23 @@ async def speak(ctx:Context):
     subjective =  analyze_user_input(user_input)
     subjective = model.generate_content("Use the SOAP model to write the subjective part of the evaluation.\n\n" + soap + "\n\n"+subjective ).text
     objective = model.generate_content("Use the SOAP model to write the Objective part of the evaluation: " + soap +'\n\n' + Game1+"\n\n"+Game2 + "\n\nEvent log:\n\n"+ctx.storage.get("event_log") + "\n\nUSE DATA FROM THE LOG AND YOUR UNDERSTADING OF THE GAME TO WRITE ONLY Objective. Only talk about metrics that are mentioned in the log. Say how many games were played. how much time was used. what level the game was played at") .text
-   
-    ctx.logger.info("Notes on subjective behavior:\n\n" + subjective)
-    ctx.logger.info("\n\nNotes on objective behavior:\n\n" + objective)
+    ctx.storage.set("subjNotes",ctx.storage.get("subjNotes")+"\n\n"+subjective)
+    ctx.storage.set("objNotes",ctx.storage.get("objNotes")+"\n\n"+objective)
+    if ctx.storage.get("last_score") >= 8:
+        with open("plan.txt", "w") as f:
+            f.write(ctx.storage.get("subjNotes"))
+            f.write("\n\n"+ctx.storage.get("objNotes")+"\n\n")
+            f.write('Future Sessions:\n\n')
+            f.write("In future sessions, we wil aid in the development of the biceps brachii (the muscles in the front of the upper arm, crucial for bending the elbow) and triceps brachii with new activities like rowing a boat or moving books on a bookshelf. We hope to continue the patients progress in the recovery process.")
+
+    plan = "Our plan is to continue expanding to include more games, including creating a new game ."
+    ctx.logger.info(plan)
 
 
+def instructions():
+    instr = "Hello! I will be your physical therapist today. Today, we will be playing the game Forearm Flexors, which will work the muscles along the inner side of the forearm. For this game, pick up the grass as quickly as you can. The game will last for 30 seconds. You must score at least 10 points to win. Good luck!"
+    ref = db.reference('/llm')
+    ref.update({"text":instr})
 
 def giveInstructions(game,task="Intro",current_score=0,time_remaining=0,seconds_per_score=0, remaining_points=0,ctx=None): # Tell Gemini 
 
@@ -591,26 +601,32 @@ def giveInstructions(game,task="Intro",current_score=0,time_remaining=0,seconds_
 
 @placeholder.on_interval(period=1)
 async def get_unity_data(ctx:Context):
-    ref = db.reference('/output')
-    print(ref.get())
-    ctx.storage.set("text_output",str(ref.get()["speech_text"]))
-    ref = db.reference('/api')
-    sendDict = {
-        "game_type": "Forearm Flexors",
-        "difficulty": ctx.storage.get("difficulty"),
-        "time_remaining": ctx.storage.get("time_remaining"),
-        "secsSinceLastScore": ctx.storage.get("secsSinceLastScore"),
-        "last_score": ctx.storage.get("last_score"),
-        "winning_score": ctx.storage.get("winning_score"),
-        "highlighted_muscles": ctx.storage.get("highlighted_muscles"),
-        "num_plants": ctx.storage.get("num_plants"),
-        "distance": ctx.storage.get("distance"),
-        "size": ctx.storage.get("size"),
-        "handedness": ctx.storage.get("handedness"),
-        "max_time": ctx.storage.get("time")
-}
-    ctx.storage.set("game_type", "Forearm Flexors")
-    ref.update(sendDict)
+    try:
+        ref = db.reference('/output')
+        ctx.storage.set("text_output",str(ref.get()["speech_text"]))
+        ref = db.reference('/api')
+        sendDict = {
+            "game_type": "Forearm Flexors",
+            "difficulty": ctx.storage.get("difficulty"),
+            "time_remaining": ctx.storage.get("time_remaining"),
+            "secsSinceLastScore": ctx.storage.get("secsSinceLastScore"),
+            "last_score": ctx.storage.get("last_score"),
+            "winning_score": ctx.storage.get("winning_score"),
+            "highlighted_muscles": ctx.storage.get("highlighted_muscles"),
+            "num_plants": ctx.storage.get("num_plants"),
+            "distance": ctx.storage.get("distance"),
+            "size": ctx.storage.get("size"),
+            "handedness": ctx.storage.get("handedness"),
+            "max_time": ctx.storage.get("time")
+    }
+        ctx.storage.set("game_type", "Forearm Flexors")
+        ref.update(sendDict)
+    except:
+        ref = db.reference('/output')
+        ref.update({"speech_text":""})
+        ref = db.reference('/api')
+        ctx.storage.set({"game_type": "Forearm Flexors"})
+        ref.update({"game_type", "Forearm Flexors"})
    
 
 

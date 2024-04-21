@@ -1,0 +1,38 @@
+Notes on subjective behavior:
+
+
+
+**Subjective**
+
+* "The patient reports experiencing headaches."
+
+**S (Subjective):**
+
+The patient presents with a subjective complaint of headache.
+
+Notes on objective behavior:
+
+
+
+**Objective**
+
+**Forearm Flexors**
+
+* 1 game played
+* Game duration: Not specified
+* Difficulty level: Increased to 2, then decreased to 0
+
+**Bicep Builder**
+
+* No objective data available in the provided log
+
+**Objective:**
+
+* Player won one round of Forearm Flexors.
+* Forearm Flexors was played at difficulty level 2.
+* Time used for Forearm Flexors: Not specified in the provided log.
+* Forearm Flexors difficulty level was decreased to 0 four times.
+
+Future Sessions:
+
+In future sessions, we wil aid in the development of the biceps brachii (the muscles in the front of the upper arm, crucial for bending the elbow) and triceps brachii with new activities like rowing a boat or moving books on a bookshelf. We hope to continue the patients progress in the recovery process.
